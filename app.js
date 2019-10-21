@@ -1,4 +1,3 @@
-
 const gallery = $('#gallery');
 const search = $('.search-container');
 fetch('https://randomuser.me/api/?results=12&&nat=us&lego').then(response => response.json()).then(response => generateCards(response))
@@ -49,16 +48,42 @@ function generateCards(response) {
                     <p class="modal-text">${address}</p>
                     <p class="modal-text">Birthday: ${birthday}</p>
                     </div>
-                </div>`
+                </div>
+                 <div class="modal-btn-container">
+                    <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                    <button type="button" id="modal-next" class="modal-next btn">Next</button>
+                </div>
+            </div>`
         $("body").append(modalHTML);
         $("#modal-close-btn").on("click", function () {
             $(".modal-container").remove();
-        })
+        });
+        $(".modal-next").on("click", function () {
+            if (i < 11) {
+                $(".modal-container").remove();
+                generateModal((i + 1));
+            } else if (i = 12) {
+                i = 0;
+                $(".modal-container").remove();
+                generateModal((i));
+            }
+        });
+        $(".modal-prev").on("click", function () {
+            if (i > 0) {
+                $(".modal-container").remove();
+                generateModal((i - 1));
+                console.log(i);
+            } else if (i = 0) {
+                i = 11;
+                $(".modal-container").remove();
+                generateModal((i));
+                console.log(i);
+            }
+        });
     }
     $('#gallery').on("click", ".card", function () {
         i = ($(this).index());
         generateModal(i);
     })
-
 }
-    
+
