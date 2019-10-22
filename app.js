@@ -81,6 +81,9 @@ function generateCards(response) {
                 generateModal((i));
             }
         });
+        // Modal background color changed for readability
+        $('.modal').css("background-color", "wheat");
+        $('.modal-btn-container').css("background-color", "wheat");
     }
     //Event Listener call the generateModal function
     $('#gallery').on("click", ".card", function () {
@@ -95,6 +98,10 @@ function generateCards(response) {
     //     } else {
     //     }
     // })
+    // Card background color changed for readability
     $('.card').css("background-color", "khaki");
+    
+
 }
+// Body background color changed for readability
 $('body').css("background-color", "aquamarine");
