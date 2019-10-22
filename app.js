@@ -69,15 +69,13 @@ function generateCards(response) {
             }
         });
         $(".modal-prev").on("click", function () {
-            if (i > 0) {
+            if (i >= 1) {
                 $(".modal-container").remove();
                 generateModal((i - 1));
-                console.log(i);
-            } else if (i = 0) {
+            } else {
                 i = 11;
                 $(".modal-container").remove();
                 generateModal((i));
-                console.log(i);
             }
         });
     }
