@@ -1,12 +1,14 @@
+//Global Variables
 const gallery = $('#gallery');
 const search = $('.search-container');
+//API call for 12 users from US and lego heads- found it was easier to retrieve all data and sort it out myself
 fetch('https://randomuser.me/api/?results=12&&nat=us&lego').then(response => response.json()).then(response => generateCards(response))
 // Search Markup 
-$('.search-container').append('<form></form>');
-const form = $('form').attr("action", "#").attr("method", "get");
-form.append('<input type="search" id="search-input" class="search-input" placeholder="Search...">');
-form.append('<input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">');
-//Gallery Markup
+// $('.search-container').append('<form></form>');
+// const form = $('form').attr("action", "#").attr("method", "get");
+// form.append('<input type="search" id="search-input" class="search-input" placeholder="Search...">');
+// form.append('<input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">');
+//Gallery Markup for the 12 users
 function generateCards(response) {
     for (let i = 0; i < response.results.length; i++) {
         const picture = response.results[i].picture.thumbnail;
@@ -26,7 +28,7 @@ function generateCards(response) {
          `
         gallery.append(galleryHTML);
     }
-
+    // this function generates the modal and the next prev buttons
     function generateModal(i) {
         const picture = response.results[i].picture.thumbnail;
         const name = response.results[i].name.first + ', ' + response.results[i].name.last;
@@ -58,6 +60,7 @@ function generateCards(response) {
         $("#modal-close-btn").on("click", function () {
             $(".modal-container").remove();
         });
+        // Both next next and prev buttons should loop around the users without any errors
         $(".modal-next").on("click", function () {
             if (i < 11) {
                 $(".modal-container").remove();
@@ -79,9 +82,19 @@ function generateCards(response) {
             }
         });
     }
+    //Event Listener call the generateModal function
     $('#gallery').on("click", ".card", function () {
         i = ($(this).index());
         generateModal(i);
     })
+    // $('#search-input').on("keydown", function () {
+    //     event.preventDefault();
+    //     const card = $(".card");
+    //     for(let i = 0; i < card.length; i++)
+    //     if(){
+    //     } else {
+    //     }
+    // })
+    $('.card').css("background-color", "khaki");
 }
-
+$('body').css("background-color", "aquamarine");
